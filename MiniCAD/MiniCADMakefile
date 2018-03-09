@@ -1,0 +1,9 @@
+build:
+	javac -g Main.java
+clean:
+	rm -r *.class
+	rm -r ./form/*.class
+	rm -r ./FactoryShape/*.class
+	rm -r ./Visitable/*.class
+	rm -r ./Visitor/*.class
+

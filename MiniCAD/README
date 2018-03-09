@@ -1,0 +1,39 @@
+------------------------------------README-------------------------------------
+	In implementarea temei am folosit cele 3 patterns: Visitor Pattern, 
+Factory Pattern si Singleton Panttern.
+	In pachetul FactoryShape am impementat interfata IFactory cu metoda 
+createForm care va fi ulterior implementata in clasa Factory(unde sunt
+implementate Factory si SIngleton Pattern), unde in functie de tipul de figura
+primit ca paramentru va returna un obiect a acelei forme
+	 In pachetul form sunt implementarile pentru fiecare forma, acestea
+toate extind clasa abstracta Shape, care contine membri generali pentru 
+forme s constructori supraincarcati pentru implemetarea mai usoara a claselor
+derivate si pentru a evita condul duplicat. Clasele derivate contin doar
+constructori membri necesari definirii formelor si getters, desenarea efectiva
+a acestor forme fiind implementata in clasa VisitorDraw, unde sunt definiti
+toti algoritmi de desenare necesari.
+	In pacetul Visitor sunt clasele necesare desenarii:
+- Clasa FloodFill unde am implementat pattern -ul singleton pentru a nu 
+fi nevoit sa instantiez aceasta clasa cand o flosesc. Algoritmul porneste
+dintr -un punct
+din interiorul formei si coloreaza pana cand ajunge la marginea ei.
+- Interfata Visitor cu metoda visit supraincarcata pentru fiecare forma
+- Clasa VisitorDraw care implementeaza interfata Visitor si implementeaza
+metodele de visit pentru fiecare forma :
+	- Canvas: creeaza o instanta a clasei BufferedImage si seteaza fiecare
+	pixel din aceasta cu interiorColor
+	- Circle: folosesc algoritmul lui Bresenham pentru colorarea marginii
+	si de floodfill pentru a colora interiorul
+	- Diamond: ma flosesc de clasa interna DrawLine pentru a desena
+	conturul acestuia si de floodfill pentru colora interiorul
+	- Line: folosec o instanta a clasei DrawLine (foloseste algoritmul lui
+	Bresenham pentru a desena o linie din pct A in B) pentru a desena o
+	linia
+	- Poligon: folosesc o instanta a clasei DrawLine pentru a desena linii
+	intre varfurile poligonului in sesns trigonometric si floodfill pentru
+	a umple interiorul
+	- Rectangle: folosesc o instanta a clasei DrawLine pentru a desena
+ 	linii intre varfurile dreptunghiului in sesns trigonometric si de doua
+	for -uri pentru a colora interiorul
+	- Square: acelasi procedeu cala Rectangle
+	- Triangle: acelasi procedeu ca la poligon
